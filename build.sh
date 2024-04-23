@@ -1,2 +1,2 @@
-pip install -r requirements.txt
-python build.py
+#!/bin/bash
+python3 ./build.py
