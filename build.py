@@ -19,12 +19,14 @@ with open("index.html", "r+") as file:
     comments = soup.find_all(string=lambda text: type(text) == bs4.element.Comment)
     for comment in comments:
         comment_string = comment.string.strip()
+        parent = comment.parent
+        parent.clear()        
 
         if comment_string == "Main":
-            comment.parent.append(md_soup)
+            parent.append(md_soup)
 
         elif comment_string == "Title":
-            comment.parent.append(f"{meta['title'][0]}")
+            parent.append(f"{meta['title'][0]}")
 
     file.seek(0)
     file.truncate(0)
